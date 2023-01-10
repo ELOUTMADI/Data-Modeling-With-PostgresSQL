@@ -51,3 +51,31 @@ You can run this script by running the command `python create_tables.py` in the 
 The database is intended to be used for Sparkify's ETL pipeline, and the tables are designed to store data on users, songs, artists, and songplays.
 
 It is very important to ensure that the correct details are given to the script. And this script should be used only once when the database is being set up.
+
+## ETL Pipeline
+
+This script is responsible for processing the data files in json format and loading them into the Sparkify database. The data includes song information and event logs, which is extracted and transformed into a format suitable for loading into a Postgres database. The script uses the following libraries:
+* os: To access the filesystem and search for json files
+* glob: To search for json files
+* psycopg2: To connect to and interact with the Postgres database
+* pandas: To read and manipulate the json data
+* sql_queries: A module containing the SQL statements for inserting data into the tables
+
+### Functionality
+
+The script defines three main functions:
+1. `process_song_file(cur, filepath)`: Given a cursor and filepath, this function will read the song file in json format and insert the data into the songs and artists table
+2. `process_log_file(cur, filepath)`: Given a cursor and filepath, this function will read the log file in json format and insert the data into the time, users and songplays table
+3. `process_data(cur, conn, filepath, func)`: Driver function that calls the above two functions on all json files found in the filepath directory.
+
+### Usage
+
+The script should be run with the command python etl.py. Before running the script, it is important to ensure that the correct file path is provided and that the database details are correct in the script. The script will start by searching for all json files in the specified filepath, and then it will process the song and log files separately, inserting the data into the songs, artists, time, users and songplays tables.
+
+It is important to note that, the script will only search for json files in the specified filepath directory, so it is important to make sure that the correct data files are located in the specified directory.
+
+After the data is loaded, the script will print the number of records inserted for each file processed. This will help in tracking the progress of the script.
+
+It is also important to note that running this script will insert data into the database, so if you wish to start fresh, you should drop and create the database tables before running this script.
+
+Once the script completes, you can run analytical queries to extract insights and make business decisions using the data in the database.
