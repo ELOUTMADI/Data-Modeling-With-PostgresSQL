@@ -4,7 +4,7 @@ This repository contains the ETL pipeline for populating the Sparkify database, 
 
 ## Database Design
 
-<img width="354" alt="schema" src="https://user-images.githubusercontent.com/47195793/211654606-65a33bca-bf9c-4a04-8aa3-a88a31b7abc9.png">
+<center><img width="354" alt="schema" src="https://user-images.githubusercontent.com/47195793/211654606-65a33bca-bf9c-4a04-8aa3-a88a31b7abc9.png"></center>
 
 The STAR schema is used for the database design, as it simplifies queries and provides fast aggregations of data. The schema includes the following tables:
 
